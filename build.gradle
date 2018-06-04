@@ -1,0 +1,202 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        jcenter()
+        google()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.1'
+        //greendao
+        classpath 'org.greenrobot:greendao-gradle-plugin:3.2.1'
+        //添加apt插件 ,升级gradle3.0后不再需要
+//        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        mavenCentral()
+        google()
+    }
+}
+def supportVersion = "27.0.2"
+
+ext {
+    aversion = [  //android version
+                  buildToolsVersion: "27.0.3",
+                  compileSdkVersion: 27,
+                  minSdkVersion    : 18,
+                  targetSdkVersion : 27
+    ]
+    dversion = [ //dependencies library version
+                 supportLibraryVersion  : '27.1.1',
+                 constraintLayoutVersion: '1.0.2',
+                 butterknifeVersion     : '8.8.1',
+                 fastjsonVerson         : '1.2.41',
+                 rxJavaVersion          : '2.0.1',
+                 retrofitVersion        : '2.3.0',
+                 stethoVersion          : '1.5.0',
+                 frescoVersion          : '1.4.0',
+                 photodraweeviewVersion : '1.1.1',
+                 eventbusVersion        : '3.0.0'
+    ]
+}
+
+//是否是执行Debug相关task (通用API, 子module中也可调用)
+def isDebug() {
+    def taskNames = gradle.startParameter.taskNames
+    for (tn in taskNames) {
+        if ((tn.contains("install") || tn.contains("assemble")) && tn.contains("Debug")) {
+            return true
+        }
+    }
+    return false
+}
+
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+
+
+
+defaultTasks 'duanhaoshuo', 'yugangshuo'
+
+task(yugangshuo).doLast {
+    println "start execute yuangshuo"
+    println "haveFun() return " + haveFun()
+}
+
+task duanhaoshuo(dependsOn: yugangshuo) << {
+    println "start execute duanhaoshuo"
+    println "hello() return " + hello()
+    list()
+    map()
+}
+
+/**
+ * 总结
+ 在Groovy中，类型是弱化的，所有的类型都可以动态推断，但是Groovy仍然是强类型的语言，类型不匹配仍然会报错；
+ 在Groovy中很多东西都可以省略，所以寻找一种自己喜欢的写法；
+ Groovy中的注释和Java中相同。
+ * @return
+ */
+def haveFun() {
+    println "have fun!"
+    System.out.println("have fun!");
+    2   //不在最后一行，没有return，不作为返回值。
+    def file1 = new File("a.txt")
+
+    println "read file using two parameters"
+    file1.eachLine { line, lineNo ->
+        println "${lineNo}.${line}"
+    }
+
+    def file2 = new File("a.txt")
+    //在Groovy中，可以使用assert来设置断言，当断言的条件为false时，程序将会抛出异常：
+    //在Groovy中，==相当于Java的equals，，如果需要比较对个对象是否是同一个，需要使用.is()。
+    assert file1 == file2
+    assert !file1.is(file2)
+    1 + 1  //
+}
+/*
+在Groovy中，数据类型有：
+Java中的基本数据类型
+Java中的对象
+Closure（闭包）   闭包可以当做函数一样使用
+加强的List、Map等集合类型
+加强的File、Stream等IO类型
+ */
+
+def hello() {
+    def closure = { int a, String b ->
+        println "a=${a}, b=${b}, I am a closure!"
+    }
+
+// 这里省略了闭包的参数类型
+    def test = { a, b ->
+        println "a=${a}, b=${b}, I am a closure!"
+    }
+
+    def ryg = { a, b ->
+        a + b
+    }
+
+    //如果闭包不指定参数，那么它会有一个隐含的参数 it
+    def test1 = {
+        println "find ${it}, I am a closure!"
+    }
+
+    test1(100)
+
+    // 闭包可以当做函数一样使用
+    closure(100, "renyugang")
+    test.call(100, 200)
+    def c = ryg(100, 200)
+    println c
+//    ryg(100, 200)
+}
+
+def list() {
+    def emptyList = []
+    def test = [100, "hello", true]
+    test[1] = "world"
+    println test[0]
+    println test[1]
+    test << 200
+    println test.size
+}
+
+def map() {
+    def emptyMap = [:]
+    def test = ["id": 1, "name": "renyugang", "isMale": true]
+    test["id"] = 2
+    test.id = 900
+    def he = 100.0
+//    test << he     wrong
+    test.put(he, he)
+    println test.id
+    println test.isMale
+    println test.entrySet()
+}
+
+def book() {
+    Book bk = new Book()
+    bk.id = 1
+    bk.name = "android art"
+    bk.press = "china press"
+
+//    可以简写为：
+    Book bk0 = new Book()
+    bk.with {
+        id = 1
+        name = "android art"
+        press = "china press"
+    }
+
+//在Groovy中，非空判断可以用?表达式，比如：
+    if (order != null) {
+        if (order.getCustomer() != null) {
+            if (order.getCustomer().getAddress() != null) {
+                System.out.println(order.getCustomer().getAddress());
+            }
+        }
+    }
+
+//    可以简写为：
+    println order?.customer?.address
+}
+
+class Book {
+    private int id
+    private String name
+    private String press
+
+    String getName() { return name }
+
+    void setName(String name) { this.name = name }
+}
+
