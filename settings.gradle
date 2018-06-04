@@ -1,4 +1,2 @@
-//include ':app'
 include ':myDemo', ':Headfirst-Pattern', ':javaProcessor', ':codefond', ':videodemo', ':rxhttpcore'
 include ':androidlib'
-//include ':WeXinDemo'
