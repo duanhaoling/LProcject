@@ -32,7 +32,7 @@ ext {
                   buildToolsVersion: "27.0.3",
                   compileSdkVersion: 27,
                   minSdkVersion    : 18,
-                  targetSdkVersion : 21
+                  targetSdkVersion : 27
     ]
     dversion = [ //dependencies library version
                  supportLibraryVersion  : '27.1.1',
