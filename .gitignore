@@ -97,10 +97,10 @@ temp.txt
 
 
 # submodule
-myDemo/
-videodemo/
-codefond/
-androidlib/
-rxhttpcore/
-Headfirst-Pattern/
-javaProcessor/
+#myDemo/
+#videodemo/
+#codefond/
+#androidlib/
+#rxhttpcore/
+#Headfirst-Pattern/
+#javaProcessor/

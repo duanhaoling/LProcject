@@ -1,0 +1,56 @@
+apply plugin: 'com.android.application'
+
+android {
+
+    def getVersionCode = { ->
+        def code = project.hasProperty('vcode') ? vcode.toInteger() : 666
+        //vcode是命令行传入的参数, 以-P param_key=param_value的形式传递
+        return code
+    }
+
+    def getVersionName = { ->
+        def name = project.hasProperty('vname') ? vname : "1.0"
+        return name
+    }
+
+    compileSdkVersion aversion.compileSdkVersion
+
+    defaultConfig {
+        applicationId "com.ldh.android.codefond"
+        minSdkVersion aversion.minSdkVersion
+        targetSdkVersion aversion.targetSdkVersion
+        versionCode getVersionCode()
+        versionName getVersionName()
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation "com.android.support:appcompat-v7:${dversion.supportLibraryVersion}"
+    implementation "com.android.support:design:${dversion.supportLibraryVersion}"
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation "com.android.support:support-vector-drawable:${dversion.supportLibraryVersion}"
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    implementation project(path: ':rxhttpcore')
+}
