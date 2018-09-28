@@ -1,0 +1,200 @@
+apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+apply plugin: 'org.greenrobot.greendao'
+
+buildscript {
+    //配置gradle插件的仓库
+    repositories {
+        jcenter()
+        google()
+        maven { url 'https://maven.fabric.io/public' }
+    }
+    dependencies {
+        //添加apt插件,使用注解 ，Dagger2
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+        classpath 'io.fabric.tools:gradle:1.+'
+    }
+}
+//配置依赖库的仓库
+repositories {
+    jcenter()
+    maven { url "https://jitpack.io" }
+    google()
+    maven { url 'https://maven.fabric.io/public' }
+}
+
+android {
+    compileSdkVersion aversion.compileSdkVersion
+    buildToolsVersion aversion.buildToolsVersion
+
+//    useLibrary 'org.apache.http.legacy'
+
+    defaultConfig {
+        applicationId 'com.ldh.mydemo'
+        minSdkVersion aversion.minSdkVersion
+        targetSdkVersion aversion.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        multiDexEnabled true            //开启multiDex
+
+        ndk {
+            abiFilters 'armeabi-v7a', 'x86'    //只支持armeabi-v7a和x86，减小安装包体积
+        }
+    }
+    dexOptions {
+        jumboMode = true
+        // here heap size give 4g i got this thing from https://groups.google.com/forum/#!topic/adt-dev/P_TLBTyFWVY
+        javaMaxHeapSize "2g"
+    }
+
+    signingConfigs {
+        release {
+            def keystorePropertiesFile = rootProject.file("keystore.properties")
+            def keystoreProperties = new Properties()
+            keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+        }
+        debug {
+            storeFile file("./keystore/debug.keystore")
+            storePassword "123456"
+            keyAlias "moon"
+            keyPassword "111111"
+        }
+    }
+    buildTypes {
+        release {
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            manifestPlaceholders = [fabric_apikey: "e6c6ff9086549350c2f37ca72a48653b1e08e79c"]
+
+            signingConfig signingConfigs.release
+            shrinkResources true    //移除无用的资源文件
+            zipAlignEnabled true    //Zipalign优化
+            minifyEnabled true      //混淆编译
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            debuggable false
+            jniDebuggable false
+            applicationIdSuffix '.release'
+        }
+
+        debug {
+            //log相关
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+
+            manifestPlaceholders = [fabric_apikey: "e6c6ff9086549350c2f37ca72a48653b1e08e79c"]
+
+            signingConfig signingConfigs.debug
+            debuggable true
+            jniDebuggable true
+            applicationIdSuffix '.debug'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+//    schemaVersion： 数据库schema版本，也可以理解为数据库版本号
+//    daoPackage：设置生成的DaoMaster、DaoSession、Dao包名
+//    targetGenDir：设置DaoMaster、DaoSession、Dao目录
+//    targetGenDirTest：设置生成单元测试目录
+//    generateTests：设置自动生成单元测试用例
+    greendao {
+        schemaVersion 1
+        daoPackage 'com.example.mydemo.greendaotdemo'
+        targetGenDir 'src/main/java'
+    }
+
+    //使用DataBinding
+    dataBinding {
+        enabled = true
+    }
+    //禁止 Gradle 检查png的合法性
+    aaptOptions {
+        cruncherEnabled false
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+/*    // Specifies a flavor dimension.
+    flavorDimensions "color"
+
+    //use to test flavors support
+    productFlavors {
+        oppo {
+            // Assigns this product flavor to the 'color' flavor dimension.
+            // This step is optional if you are using only one dimension.
+            dimension "color"
+        }
+        xiaomi {
+            dimension "color"
+
+        }
+    }
+
+    //  批量渠道包值替换（有些第三方库中需要用到渠道名）
+    productFlavors.all { flavor ->
+        // 友盟、极光推送渠道包， UMENG_CHANNEL 是根据你AndroidManifest.xml来配置的，请看下面。
+        flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name, JPUSH_CHANNEL: name]
+    }*/
+//    所谓ProductFlavors其实就是可定义的产品特性，
+//    配合 manifest merger 使用的时候就可以达成在一次编译过程中产生多个具有自己特性配置的版本。
+//     上面这个配置的作用就是，为每个渠道包产生不同的 UMENG_CHANNEL_VALUE 的值。
+
+    //批量重命名
+    // 输出文件配置，格式如下：app-{版本号}-{渠道名称}.apk
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            // 文件名修改
+            outputFileName = "myDemo-${defaultConfig.versionName}-${variant.flavorName}.apk"
+        }
+    }
+}
+
+
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    //私有库
+    //    compile project(':androidlib')
+    //    debugCompile project(path: ':androidlib', configuration: 'debug')
+    //    releaseCompile project(path: ':androidlib', configuration: 'release')
+    implementation project(':androidlib')
+
+    implementation 'de.hdodenhof:circleimageview:2.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.android.support:support-v4:27.1.1'
+    testImplementation 'junit:junit:4.12'
+    //butterknife
+    implementation 'com.jakewharton:butterknife:7.0.1'
+    annotationProcessor 'com.jakewharton:butterknife:7.0.1'
+
+//    annotationProcessor 'com.google.auto.service:auto-service:1.0-rc3'
+//    implementation 'com.google.auto.service:auto-service:1.0-rc3'
+
+    implementation files('libs/javaProcessor.jar')
+    annotationProcessor files('libs/javaProcessor.jar')
+    compile('com.crashlytics.sdk.android:crashlytics:2.9.4@aar') {
+        transitive = true;
+    }
+}
+/**
+ * http://blog.csdn.net/industriously/article/details/53932425
+ *
+ * 最后我们创建task的依赖顺序，app:preBuild依赖我们写的processorTask,
+ * processorTask依赖 :processor:build:
+ * 意思就是processor build完成后把jar复制到app，然后在执行app:preBuild。
+ */
+task processorTask(type: Exec) {
+    commandLine 'cp', '../javaProcessor/build/libs/javaProcessor.jar', 'libs/'
+}
+//processorTask.dependsOn(':javaProcessor:build')
+//preBuild.dependsOn(processorTask)
+

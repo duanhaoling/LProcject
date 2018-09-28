@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PagerSlidingTabStrip">
+        <attr name="slidingBlock" format="reference|color" />
+        <attr name="allowWidthFull" format="boolean" />
+        <attr name="disableViewPager" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="Follow">
+        <attr name="target" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="CircleSimple">
+        <attr name="radius" format="dimension|integer" />
+        <attr name="startangle" format="integer" />
+        <attr name="endangle" format="integer" />
+    </declare-styleable>
+</resources>
