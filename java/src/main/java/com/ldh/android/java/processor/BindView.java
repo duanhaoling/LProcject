@@ -1,4 +1,4 @@
-package com.ldh.android.javaprocessor;
+package com.ldh.android.java.processor;
 
 /**
  * hello world

@@ -1,4 +1,4 @@
-package com.ldh.android.javaprocessor;
+package com.ldh.android.java.processor;
 
 import java.io.IOException;
 import java.io.Writer;
@@ -19,7 +19,7 @@ import javax.tools.JavaFileObject;
  * @author ldh
  * @date 2017/11/17
  */
-@SupportedAnnotationTypes("com.ldh.android.javaprocessor.CustomAnnotation")
+@SupportedAnnotationTypes("CustomAnnotation")
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
 public class CustomAnnotationProcessor extends AbstractProcessor {
 

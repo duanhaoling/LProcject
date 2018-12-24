@@ -11,7 +11,7 @@
         android:padding="26dp"
         android:text="取消"
         android:textColor="@color/white"
-        android:textSize="@dimen/ajkH2Font" />
+        android:textSize="@dimen/ldhH2Font" />
 
     <TextView
         android:id="@+id/tv_clip_xuanqu"
@@ -22,7 +22,7 @@
         android:padding="26dp"
         android:text="选取"
         android:textColor="@color/white"
-        android:textSize="@dimen/ajkH2Font" />
+        android:textSize="@dimen/ldhH2Font" />
 
     <com.ldh.androidlib.view.ClipImageView
         android:id="@+id/src_pic"

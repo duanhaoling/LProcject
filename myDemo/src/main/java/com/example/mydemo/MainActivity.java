@@ -8,7 +8,10 @@ import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
@@ -16,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.mydemo.dummy.DummyContent;
 import com.example.mydemo.mobile.PackageManagerActivity;
 import com.example.mydemo.view.DialogActivity;
 import com.example.mydemo.view.recycledemo.RecyclerDemoActivity;
@@ -24,17 +28,21 @@ import com.ldh.androidlib.base.BaseActivity;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 /**
  */
 public class MainActivity extends BaseActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener ,ItemFragment.OnListFragmentInteractionListener {
 
 
     private static final int REQUEST_CODE_TAKE_PHOTO = 0x100;
     private String mCurrentPhotoPath;
+    private List<String> titles;
+    private List<Fragment> fragments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +74,26 @@ public class MainActivity extends BaseActivity
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        initViewpager();
+    }
+
+    private void initViewpager() {
+
+        ViewPager viewPager = findViewById(R.id.view_pager);
+        TabLayout tableLayout = findViewById(R.id.tab_layout);
+        titles = new ArrayList<>();
+        fragments = new ArrayList<>();
+        titles.add("热门");
+        titles.add("经典");
+        titles.add("初级");
+        fragments.add(BlankFragment.newInstance());
+        fragments.add(MyListFragment.newInstance());
+        fragments.add(ItemFragment.newInstance(8));
+        FragmentAdapter fadatper = new FragmentAdapter(getSupportFragmentManager(), fragments, titles);
+        viewPager.setAdapter(fadatper);
+        viewPager.setOffscreenPageLimit(2);
+        tableLayout.setupWithViewPager(viewPager);
     }
 
     @Override
@@ -102,6 +130,7 @@ public class MainActivity extends BaseActivity
         }
 
         if (id == R.id.nav_send) {
+            gotoActivity(FileDownLoadActivity.class);
 
         }
 
@@ -174,5 +203,10 @@ public class MainActivity extends BaseActivity
 //                .setNegativeButton("no", null)
 //                .show("test");
 
+    }
+
+    @Override
+    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+        
     }
 }

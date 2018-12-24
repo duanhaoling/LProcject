@@ -36,6 +36,10 @@ import java.util.List;
  */
 public class MyListFragment extends ListFragment {
 
+    public static MyListFragment newInstance() {
+        return new MyListFragment();
+    }
+
     private Context mContext;
     private final String[] ss = new String[]{
             "MyListActivity",

@@ -101,7 +101,8 @@
         <activity android:name=".MediaCenterActivity" />
         <activity android:name=".image_picker.ImageGridActivity" />
         <activity android:name=".image_picker.clip.ClipActivity" />
-        <activity android:name=".viewpager.ViewPagerGuideActivity"></activity>
+        <activity android:name=".viewpager.ViewPagerGuideActivity" />
+        <activity android:name=".FileDownLoadActivity"></activity>
     </application>
 
 </manifest>

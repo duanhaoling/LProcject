@@ -1,4 +1,4 @@
-package com.ldh.android.javaprocessor;
+package com.ldh.android.java.processor;
 
 /**
  * Android中使用AbstractProcessor在编译时生成代码

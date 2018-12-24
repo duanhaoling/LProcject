@@ -26,7 +26,7 @@
         android:singleLine="true"
         android:text="你占领的朝阳-酒仙桥 商圈五房源可展示，请马上发布新房  你占领的朝阳-酒仙桥 商圈五房源可展示，请马上发布新房"
         android:textColor="@color/light_blue"
-        android:textSize="@dimen/ajkH3Font" />
+        android:textSize="@dimen/ldhH3Font" />
 
     <Button
         android:layout_width="wrap_content"

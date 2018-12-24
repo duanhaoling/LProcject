@@ -99,7 +99,7 @@
 		<item name="android:paddingRight">4dip</item>
 		<item name="android:layout_width">0dp</item>
 		<item name="android:layout_weight">1</item>
-		<item name="android:textSize">@dimen/ajkH2Font</item>
+		<item name="android:textSize">@dimen/ldhH2Font</item>
 		<item name="android:textStyle">normal</item>
 		<item name="android:layout_gravity">center_vertical</item>
 	</style>
@@ -131,7 +131,7 @@
 	</style>
 
 	<style name="SDL.TextView.Message">
-		<item name="android:textSize">@dimen/ajkH3Font</item>
+		<item name="android:textSize">@dimen/ldhH3Font</item>
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:paddingTop">@dimen/grid_1</item>
 		<item name="android:paddingBottom">@dimen/grid_6</item>
@@ -140,7 +140,7 @@
 	</style>
 
 	<style name="SDL.TextView.Title">
-		<item name="android:textSize">@dimen/ajkH2Font</item>
+		<item name="android:textSize">@dimen/ldhH2Font</item>
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:paddingLeft">@dimen/grid_4</item>
 		<item name="android:paddingRight">@dimen/grid_4</item>
