@@ -1,2 +1,3 @@
-include ':myDemo', ':Headfirst-Pattern', ':java', ':codefond', ':videodemo', ':rxhttpcore'
-include ':androidlib'
+include ':myDemo', ':codefond', ':videodemo'
+include ':androidlib', ':rxhttpcore'
+include ':Headfirst-Pattern', ':java'

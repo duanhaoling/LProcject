@@ -145,6 +145,7 @@ public class MainActivity extends BaseActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
+            //todo 需要申请权限
             takePhotoNoCompress();
         } else if (id == R.id.nav_gallery) {
             gotoActivity(PackageManagerActivity.class);
