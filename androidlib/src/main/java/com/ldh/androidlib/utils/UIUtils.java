@@ -501,7 +501,8 @@ public class UIUtils {
         // draw watermark into
         cv.drawBitmap(watermark, w - ww + 5, h - wh + 5, null);// 在src的右下角画入水印
         // save all clip
-        cv.save(Canvas.ALL_SAVE_FLAG);// 保存
+//        cv.save(Canvas.ALL_SAVE_FLAG);// 保存
+        cv.save();
         // store
         cv.restore();// 存储
         return newb;
@@ -586,7 +587,7 @@ public class UIUtils {
         paint.setStyle(Style.FILL);
         paint.setStrokeWidth(3);
         canvas.drawCircle(radius, radius, radius, paint);
-        canvas.save(Canvas.ALL_SAVE_FLAG);
+        canvas.save();
         canvas.restore();
         return bitmap;
     }

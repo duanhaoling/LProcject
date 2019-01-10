@@ -23,7 +23,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
  */
 public final class RetrofitFactory {
 
-
+    private static OkHttpClient client;
     private static final int DEFAULT_TIMEOUT = 20;
     private static Retrofit retrofitV3; //可复用
 

@@ -17,14 +17,12 @@ public class NetInterceptor implements Interceptor {
     private String host;
     private String version;
 
-    public NetInterceptor(String host, String version) {
-        this.headerData = new ThreadLocal<>();
-        this.host = host;
-        this.version = version;
-    }
 
+    /**
+     * 不提供带host与version的构造方法，可以通过解析去获取，方便使用单一OkhttpClient
+     */
     public NetInterceptor() {
-        this("www.baidu.com", "");
+        this.headerData = new ThreadLocal<>();
     }
 
     @Override
