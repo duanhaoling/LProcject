@@ -7,7 +7,7 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.1'
+        classpath 'com.android.tools.build:gradle:3.3.0'
         //greendao
         classpath 'org.greenrobot:greendao-gradle-plugin:3.2.1'
         //添加apt插件 ,升级gradle3.0后不再需要
@@ -184,7 +184,7 @@ def book() {
     if (order != null) {
         if (order.getCustomer() != null) {
             if (order.getCustomer().getAddress() != null) {
-                System.out.println(order.getCustomer().getAddress());
+                System.out.println(order.getCustomer().getAddress())
             }
         }
     }
