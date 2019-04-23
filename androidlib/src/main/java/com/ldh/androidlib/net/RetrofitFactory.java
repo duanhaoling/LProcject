@@ -10,12 +10,10 @@ import com.ldh.androidlib.net.config.HttpResult;
 import com.ldh.androidlib.net.fastjson.FastJsonConverterFactory;
 import com.ldh.androidlib.net.observer.HttpObserver;
 
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
 import okhttp3.ConnectionPool;
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -32,6 +30,7 @@ public class RetrofitFactory {
      * 同一baseUrl可复用
      */
     private static Retrofit retrofit;
+    private static OkHttpClient okHttpClient;
 
     /**
      * 使用默认 retrofit
@@ -42,7 +41,7 @@ public class RetrofitFactory {
      */
     public static <T> T createService(final Class<T> service) {
         if (retrofit == null) {
-            retrofit = retrofitAdapter(ApiUtil.getBaseUrl(), new BaseIntercepter());
+            retrofit = retrofitAdapter(ApiUtil.getBaseUrl());
         }
         return retrofit.create(service);
     }
@@ -54,10 +53,7 @@ public class RetrofitFactory {
 
     public static <T> T createService(final Class<T> service, String host, String version, String publicKey, String privateKey) {
         String url = getBaseUrl(host, version);
-        Interceptor interceptor = new BaseIntercepter();
-
-        Retrofit retrofit = retrofitAdapter(url, interceptor);
-
+        Retrofit retrofit = retrofitAdapter(url);
         return retrofit.create(service);
     }
 
@@ -67,17 +63,13 @@ public class RetrofitFactory {
      */
     public static <T> T createTestService(final Class<T> service, String host, String version) {
         String url = getBaseUrl(host, version);
-        Retrofit retrofit = retrofitAdapter(url, new Interceptor() {
-            @Override
-            public okhttp3.Response intercept(Chain chain) throws IOException {
-                return chain.proceed(chain.request());
-            }
-        });
+        Retrofit retrofit = retrofitAdapter(url);
         return retrofit.create(service);
     }
 
     /**
      * 通过host 与 version获取baseUrl，为空时指定默认值
+     * )
      *
      * @param host
      * @param version
@@ -97,20 +89,9 @@ public class RetrofitFactory {
     }
 
     @NonNull
-    private static Retrofit retrofitAdapter(String url, Interceptor interceptor) {
-        OkHttpClient.Builder builder = new OkHttpClient.Builder()
-                .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
-                .readTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
-                .writeTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
-                .connectionPool(new ConnectionPool(8, DEFAULT_TIMEOUT, TimeUnit.SECONDS))
-                .addInterceptor(interceptor);
+    private static Retrofit retrofitAdapter(String url) {
 
-        if (BuildConfig.DEBUG) {
-            //可以更换为自定义log拦截器
-            builder.addNetworkInterceptor(new HttpLoggingInterceptor())
-                    .addNetworkInterceptor(new StethoInterceptor());
-        }
-        OkHttpClient client = builder.build();
+        OkHttpClient client = getClient();
 
         return new Retrofit.Builder()
                 .client(client)
@@ -118,6 +99,31 @@ public class RetrofitFactory {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .baseUrl(url)
                 .build();
+    }
+
+
+    public static OkHttpClient getClient() {
+        if (okHttpClient == null) {
+            synchronized (RetrofitFactory.class) {
+                if (okHttpClient == null) {
+                    OkHttpClient.Builder builder = new OkHttpClient.Builder()
+                            .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
+                            .readTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
+                            .writeTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
+                            .connectionPool(new ConnectionPool(8, DEFAULT_TIMEOUT, TimeUnit.SECONDS))
+                            .addInterceptor(new BaseIntercepter());
+
+                    if (BuildConfig.DEBUG) {
+                        //可以更换为自定义log拦截器
+                        builder.addNetworkInterceptor(new HttpLoggingInterceptor())
+                                .addNetworkInterceptor(new StethoInterceptor());
+                    }
+                    okHttpClient = builder.build();
+                }
+            }
+        }
+
+        return okHttpClient;
     }
 
     /**
@@ -140,5 +146,6 @@ public class RetrofitFactory {
      */
     public static void resetFactory() {
         retrofit = null;
+        okHttpClient = null;
     }
 }
