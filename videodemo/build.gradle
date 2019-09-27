@@ -38,8 +38,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     //butterknife
-    implementation "com.jakewharton:butterknife:8.8.1"
-    annotationProcessor "com.jakewharton:butterknife-compiler:8.8.1"
+    implementation "com.jakewharton:butterknife:10.0.0"
+    annotationProcessor "com.jakewharton:butterknife-compiler:10.0.0"
 
     //rxJava
     api "io.reactivex.rxjava2:rxjava:2.2.6"
