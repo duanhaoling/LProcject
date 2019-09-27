@@ -3,4 +3,12 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+
+
+    <string name="permission_storage_read">未开放外置存储权限，打开相册失败</string>
+    <string name="permission_storage_write">未开放外置存储权限，%s保存失败</string>
+    <string name="permission_camera">未开放相机权限，打开相机失败</string>
+    <string name="permission_location">未开放位置权限，打开地图失败</string>
+    <string name="permission_record_audio">未开放录音权限，录音失败</string>
+    <string name="permission_record_and_capture">未开放录制权限，初始化失败</string>
 </resources>

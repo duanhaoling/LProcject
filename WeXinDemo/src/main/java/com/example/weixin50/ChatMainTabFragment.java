@@ -1,15 +1,16 @@
 package com.example.weixin50;
 
 import android.content.Intent;
-import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -77,6 +78,7 @@ public class ChatMainTabFragment extends Fragment {
         binding.bt5.setOnClickListener(view -> {
 //            Intent intent = new Intent(getActivity(), FileProviderDemo.class);
 //            startActivity(intent);
+            //todo 需要申请权限
             gotoActivity(ShootVideoActivity.class);
         });
 
