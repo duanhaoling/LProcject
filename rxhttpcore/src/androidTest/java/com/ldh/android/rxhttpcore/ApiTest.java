@@ -2,6 +2,7 @@ package com.ldh.android.rxhttpcore;
 
 import android.support.annotation.NonNull;
 import android.support.test.runner.AndroidJUnit4;
+import android.util.Log;
 
 import com.ldh.android.rxhttpcore.exception.ErrorInfo;
 import com.ldh.android.rxhttpcore.model.GankDataService;
@@ -13,7 +14,7 @@ import org.junit.runner.RunWith;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by ldh on 2018/4/27.
@@ -22,6 +23,7 @@ import static org.junit.Assert.*;
 public class ApiTest {
     @Test
     public void testGankApi() {
+        long before = System.currentTimeMillis();
         HttpProvider.newInstance(GankDataService.class, service -> service.fetchHistoryTodayInfo(1, 10))
                 .executeLoadData(new HttpObserver<List<Welfare>>() {
                     @Override
@@ -31,7 +33,9 @@ public class ApiTest {
 
                     @Override
                     public void onNext(List<Welfare> welfare) {
-
+                        long after = System.currentTimeMillis();
+                        long continueTime = after - before;
+                        Log.d("requireNet", " onNext " + continueTime + "ws " + Thread.currentThread().getName());
                     }
                 });
     }

@@ -1,6 +1,7 @@
 package com.ldh.android.rxhttpcore;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.ldh.android.rxhttpcore.model.HttpResult;
 import com.ldh.android.rxhttpcore.observer.HttpObserver;
@@ -45,7 +46,36 @@ public class HttpProvider<T, V> {
      * @return
      */
     public static <T, V> HttpProvider<T, V> newInstance(Class<T> clazz, ServerPoxy<T, V> poxy) {
-        return new HttpProvider<>(clazz, poxy);
+        ServerPoxy<T, V> newPoxy = new NewServerPoxy<>(poxy);
+        return new HttpProvider<T, V>(clazz, newPoxy);
+    }
+
+
+    /**
+     * 添加日志获取请求响应时间
+     * @param <T>
+     * @param <V>
+     */
+    public static class NewServerPoxy<T, V> implements ServerPoxy<T, V> {
+
+        ServerPoxy<T, V> poxy;
+
+        NewServerPoxy(ServerPoxy<T, V> poxy) {
+            this.poxy = poxy;
+        }
+
+        @Override
+        public Observable<HttpResult<V>> getHttpObservabe(T service) {
+            Log.d("requireNet", " before" + service.toString());
+            long before = System.currentTimeMillis();
+            Observable<HttpResult<V>> httpObservabe = poxy.getHttpObservabe(service);
+            long after = System.currentTimeMillis();
+            long continueTime = after - before;
+            System.out.println("create Thread = " + Thread.currentThread().getName() + "\n");
+            System.out.println(" after " + continueTime + "ws ");
+            Log.d("requireNet", " after " + continueTime + "ws " + Thread.currentThread().getName());
+            return httpObservabe;
+        }
     }
 
     public HttpProvider<T, V> executeLoadData(HttpObserver<V> observer) {

@@ -27,13 +27,11 @@ public class OkhttpTest {
                 .build();
         Call call = client.newCall(request);
         Response response = call.execute();
+        System.out.println("create Thread = " + Thread.currentThread().getName() + "\n");
         System.out.println(response.code() + "\n"
                 + response.toString() + "\n"
                 + response.body().string());
     }
-
-
-
 
 
 }
