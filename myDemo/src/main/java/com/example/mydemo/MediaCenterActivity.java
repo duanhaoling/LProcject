@@ -2,27 +2,28 @@ package com.example.mydemo;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.bumptech.glide.Glide;
+import com.example.mydemo.annotation.BindView;
 import com.example.mydemo.image_picker.clip.ClipActivity;
 
 import java.io.File;
 
-import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class MediaCenterActivity extends AppCompatActivity {
-    @Bind(R.id.image_card)
+    @BindView(R.id.image_card)
     ImageView imageCard;
-    @Bind(R.id.take_photo)
+    @BindView(R.id.take_photo)
     Button takePhoto;
-    @Bind(R.id.select_pic)
+    @BindView(R.id.select_pic)
     Button selectPic;
     private int mScreenWidth;
     public static final int REQUEST_CLIP = 1;
@@ -63,6 +64,7 @@ public class MediaCenterActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case REQUEST_CLIP:
                 if (resultCode == RESULT_OK) {

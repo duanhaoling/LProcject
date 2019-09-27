@@ -16,11 +16,11 @@
         app:slidingBlock="@drawable/image_sliding_block" >
     </com.example.mydemo.widget.PagerSlidingTabStrip>
 
-    <android.support.v4.view.ViewPager
+    <androidx.viewpager.widget.ViewPager
         android:id="@+id/pager"
         style="@style/fill_fill"
         android:layout_below="@id/pager_tabstrip">
-    </android.support.v4.view.ViewPager>
+    </androidx.viewpager.widget.ViewPager>
 
     <com.example.mydemo.widget.EmptyLayout
         android:id="@+id/error_layout"

@@ -1,7 +1,7 @@
 package com.ldh.androidlib.net.exception;
 
 import android.net.ParseException;
-import android.support.annotation.Keep;
+import androidx.annotation.Keep;
 
 import com.google.gson.JsonParseException;
 

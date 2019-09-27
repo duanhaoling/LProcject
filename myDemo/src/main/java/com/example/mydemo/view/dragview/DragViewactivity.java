@@ -1,14 +1,15 @@
 package com.example.mydemo.view.dragview;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mydemo.R;
+import com.example.mydemo.annotation.BindView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
@@ -16,7 +17,7 @@ import butterknife.ButterKnife;
  */
 public class DragViewactivity extends AppCompatActivity {
 
-    @Bind(R.id.dfbv_content)
+    @BindView(R.id.dfbv_content)
     DragFillBlankView dfbvContent;
 
     @Override

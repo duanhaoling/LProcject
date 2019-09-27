@@ -9,7 +9,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.res.Resources;
 import android.os.Build;
-import android.support.multidex.MultiDex;
+import androidx.multidex.MultiDex;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;

@@ -37,7 +37,7 @@ import android.widget.FrameLayout.LayoutParams;
 import android.widget.TabWidget;
 
 
-public class BadgeView extends android.support.v7.widget.AppCompatTextView {
+public class BadgeView extends androidx.appcompat.widget.AppCompatTextView {
 
     private boolean mHideOnNull = true;
 

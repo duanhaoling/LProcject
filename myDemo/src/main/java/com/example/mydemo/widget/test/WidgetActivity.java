@@ -1,8 +1,8 @@
 package com.example.mydemo.widget.test;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mydemo.R;
 import com.example.mydemo.widget.viewpagerfragment.WidgetViewPagerFragment;

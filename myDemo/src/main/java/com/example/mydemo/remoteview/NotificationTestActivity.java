@@ -8,17 +8,18 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Process;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RemoteViews;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.mydemo.R;
+import com.example.mydemo.annotation.BindView;
 import com.example.mydemo.view.webview.WebViewDemo;
 import com.example.mydemo.view.webview.WebViewDemo2;
 
-import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
@@ -26,9 +27,9 @@ import butterknife.ButterKnife;
  */
 public class NotificationTestActivity extends AppCompatActivity {
 
-    @Bind(R.id.btn_default)
+    @BindView(R.id.btn_default)
     Button btnDefault;
-    @Bind(R.id.btn_custom)
+    @BindView(R.id.btn_custom)
     Button btnCustom;
 
     NotificationManager manager;

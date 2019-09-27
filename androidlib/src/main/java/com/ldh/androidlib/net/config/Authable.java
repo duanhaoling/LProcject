@@ -1,7 +1,7 @@
 package com.ldh.androidlib.net.config;
 
-import android.support.annotation.UiThread;
-import android.support.annotation.WorkerThread;
+import androidx.annotation.UiThread;
+import androidx.annotation.WorkerThread;
 
 /**
  * Created by ldh on 2017/8/16.

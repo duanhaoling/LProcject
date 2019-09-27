@@ -143,7 +143,7 @@ public class Utils {
      * @throws IOException
      */
     public static String saveMyBitmap(String bitName, Bitmap mBitmap, String imgType) {
-        String pathString = getSDPath() + "/anjukebroker/ad/";
+        String pathString = getSDPath() + "/hello/ad/";
         if (null == imgType)
             imgType = ".jpg";
         String fileName = bitName + imgType;
@@ -183,7 +183,7 @@ public class Utils {
      */
     public static boolean isExistsFile(String name, String path) {
         if (TextUtils.isEmpty(path)) {
-            path = getSDPath() + "/anjukebroker/ad/";
+            path = getSDPath() + "/hello/ad/";
         }
         if (TextUtils.isEmpty(name)) {
             return false;

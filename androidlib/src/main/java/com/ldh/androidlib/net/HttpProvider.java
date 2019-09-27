@@ -1,6 +1,6 @@
 package com.ldh.androidlib.net;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.ldh.androidlib.net.config.ApiUtil;
 import com.ldh.androidlib.net.config.HttpResult;

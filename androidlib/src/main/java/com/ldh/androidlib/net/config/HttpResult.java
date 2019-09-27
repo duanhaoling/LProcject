@@ -1,6 +1,6 @@
 package com.ldh.androidlib.net.config;
 
-import android.support.annotation.Keep;
+import androidx.annotation.Keep;
 
 /**
  * * 标准数据格式

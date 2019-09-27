@@ -1,6 +1,6 @@
 package com.ldh.android.rxhttpcore;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.util.Log;
 
 import com.ldh.android.rxhttpcore.model.HttpResult;

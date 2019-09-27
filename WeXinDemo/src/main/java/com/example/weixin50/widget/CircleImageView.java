@@ -15,8 +15,8 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.support.annotation.ColorRes;
-import android.support.annotation.DrawableRes;
+import androidx.annotation.ColorRes;
+import androidx.annotation.DrawableRes;
 import android.util.AttributeSet;
 
 import com.example.weixin50.R;
@@ -26,7 +26,7 @@ import com.example.weixin50.R;
  * Created by ldh on 2017/7/4.
  */
 
-public class CircleImageView extends android.support.v7.widget.AppCompatImageView {
+public class CircleImageView extends androidx.appcompat.widget.AppCompatImageView {
     //缩放类型
     private static final ScaleType SCALE_TYPE = ScaleType.CENTER_CROP;
     private static final Bitmap.Config BITMAP_CONFIG = Bitmap.Config.ARGB_8888;

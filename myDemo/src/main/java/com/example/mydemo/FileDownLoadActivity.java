@@ -3,11 +3,11 @@ package com.example.mydemo;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.database.Cursor;
-import android.databinding.DataBindingUtil;
+import androidx.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.example.mydemo.base.BaseActivity;
 import com.example.mydemo.databinding.ActivityFileDownLoadBinding;

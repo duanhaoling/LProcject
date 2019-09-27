@@ -3,28 +3,29 @@ package com.example.mydemo.view.recycledemo;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+
 import com.example.mydemo.R;
+import com.example.mydemo.annotation.BindView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class RecyclerDemoActivity extends AppCompatActivity {
 
-    @Bind(R.id.rv_recycler_demo)
+    @BindView(R.id.rv_recycler_demo)
     RecyclerView rv;
     private List<Integer> datas;
     private RecyclerView.ItemDecoration itemDecoration;

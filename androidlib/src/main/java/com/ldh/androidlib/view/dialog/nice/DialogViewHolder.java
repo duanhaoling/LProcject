@@ -1,6 +1,6 @@
 package com.ldh.androidlib.view.dialog.nice;
 
-import android.support.annotation.Keep;
+import androidx.annotation.Keep;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.TextView;

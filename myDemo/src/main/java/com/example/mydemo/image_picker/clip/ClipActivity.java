@@ -7,11 +7,13 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.v4.content.FileProvider;
+
+import androidx.annotation.NonNull;
+import androidx.core.content.FileProvider;
 
 import com.bumptech.glide.Glide;
 import com.example.mydemo.R;
+import com.example.mydemo.annotation.BindView;
 import com.example.mydemo.image_picker.BaseImage;
 import com.example.mydemo.image_picker.ImageGridActivity;
 import com.ldh.androidlib.base.BaseActivity;
@@ -22,7 +24,6 @@ import com.ldh.androidlib.view.ClipView;
 import java.io.File;
 import java.util.ArrayList;
 
-import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -33,9 +34,9 @@ public class ClipActivity extends BaseActivity {
     public static final String KEY_CLIP_CACHE_URL = "bitmapurl";
     private static final int PERMISSIONS_REQUEST_CAMERA = 100;
     private static final int PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 101;
-    @Bind(R.id.clipview)
+    @BindView(R.id.clipview)
     ClipView clipview;
-    @Bind(R.id.src_pic)
+    @BindView(R.id.src_pic)
     ClipImageView imageView;
 
     private File cacheFile;

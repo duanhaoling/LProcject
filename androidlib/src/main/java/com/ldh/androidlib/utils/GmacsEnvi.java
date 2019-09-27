@@ -12,7 +12,7 @@ import android.opengl.GLES10;
 import android.opengl.GLES20;
 import android.os.Build;
 import android.provider.Settings;
-import android.support.v4.content.PermissionChecker;
+import androidx.core.content.PermissionChecker;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 

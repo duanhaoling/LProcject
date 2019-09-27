@@ -1,20 +1,21 @@
 package com.example.mydemo.downloadmanager;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.ProgressBar;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.mydemo.R;
+import com.example.mydemo.annotation.BindView;
 import com.example.mydemo.util.DownLoadUtils;
 
-import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class AutoUpdateActivity extends AppCompatActivity {
-    @Bind(R.id.progressBar)
+    @BindView(R.id.progressBar)
     ProgressBar progressBar;
-    @Bind(R.id.button)
+    @BindView(R.id.button)
     Button button;
     private DownLoadUtils downLoadUtils;
 

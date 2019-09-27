@@ -1,16 +1,17 @@
 package com.example.mydemo.rx.retrofit;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.mydemo.R;
+import com.example.mydemo.annotation.BindView;
 
 import java.util.List;
 
-import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.reactivex.Observer;
@@ -27,9 +28,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NetTestActivity extends AppCompatActivity {
 
-    @Bind(R.id.click_me_BN)
+    @BindView(R.id.click_me_BN)
     Button clickMeBN;
-    @Bind(R.id.result_TV)
+    @BindView(R.id.result_TV)
     TextView resultTV;
     Disposable disposable;
 

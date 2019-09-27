@@ -1,12 +1,6 @@
 package com.example.mydemo.view.material;
 
 import android.os.Bundle;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.FrameLayout;
@@ -14,9 +8,16 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.mydemo.R;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
-import butterknife.Bind;
+import com.example.mydemo.R;
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class CoordActivity extends AppCompatActivity {
@@ -30,25 +31,25 @@ public class CoordActivity extends AppCompatActivity {
     private boolean mIsTheTitleContainerVisible = true;
 
 
-    @Bind(R.id.main_iv_placeholder)
+    @BindView(R.id.main_iv_placeholder)
     ImageView mIvPlaceholder; // 大图片
 
-    @Bind(R.id.main_ll_title_container)
+    @BindView(R.id.main_ll_title_container)
     LinearLayout mLlTitleContainer; // Title的LinearLayout
 
-    @Bind(R.id.main_fl_title)
+    @BindView(R.id.main_fl_title)
     FrameLayout mFlTitleContainer; // Title的FrameLayout
 
-    @Bind(R.id.main_abl_app_bar)
+    @BindView(R.id.main_abl_app_bar)
     AppBarLayout mAblAppBar; // 整个可以滑动的AppBar
 
-    @Bind(R.id.main_tv_toolbar_title)
+    @BindView(R.id.main_tv_toolbar_title)
     TextView mTvToolbarTitle; // 标题栏Title
 
-    @Bind(R.id.main_tb_toolbar)
+    @BindView(R.id.main_tb_toolbar)
     Toolbar mTbToolbar; // 工具栏
 
-    @Bind(R.id.fab)
+    @BindView(R.id.fab)
     FloatingActionButton fab;
 
     @Override

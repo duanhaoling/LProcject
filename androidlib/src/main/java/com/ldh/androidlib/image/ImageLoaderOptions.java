@@ -1,6 +1,6 @@
 package com.ldh.androidlib.image;
 
-import android.support.annotation.DrawableRes;
+import androidx.annotation.DrawableRes;
 import android.view.View;
 
 import com.bumptech.glide.request.target.BaseTarget;

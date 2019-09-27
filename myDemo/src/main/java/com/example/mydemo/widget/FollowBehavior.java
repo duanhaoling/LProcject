@@ -2,7 +2,7 @@ package com.example.mydemo.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.design.widget.CoordinatorLayout;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import android.util.AttributeSet;
 import android.view.View;
 

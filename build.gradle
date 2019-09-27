@@ -7,9 +7,9 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.0'
+        classpath 'com.android.tools.build:gradle:3.5.0'
         //greendao
-        classpath 'org.greenrobot:greendao-gradle-plugin:3.2.1'
+        classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2'
         //添加apt插件 ,升级gradle3.0后不再需要
 //        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
     }
@@ -73,12 +73,12 @@ task(yugangshuo).doLast {
     println "haveFun() return " + haveFun()
 }
 
-task duanhaoshuo(dependsOn: yugangshuo) << {
-    println "start execute duanhaoshuo"
-    println "hello() return " + hello()
-    list()
-    map()
-}
+//task duanhaoshuo(dependsOn: yugangshuo) << {
+//    println "start execute duanhaoshuo"
+//    println "hello() return " + hello()
+////    list()
+//    map()
+//}
 
 /**
  * 总结

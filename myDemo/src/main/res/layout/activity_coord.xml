@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,13 +7,13 @@
     android:fitsSystemWindows="false"
     tools:context=".MainActivity">
 
-    <android.support.design.widget.AppBarLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/main_abl_app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppBarNative">
 
-        <android.support.design.widget.CollapsingToolbarLayout
+        <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="450dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
@@ -61,17 +61,17 @@
                         android:textColor="@android:color/white" />
                 </LinearLayout>
             </FrameLayout>
-        </android.support.design.widget.CollapsingToolbarLayout>
-    </android.support.design.widget.AppBarLayout>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none"
         app:behavior_overlapTop="30dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -84,13 +84,13 @@
                 android:lineSpacingExtra="8dp"
                 android:text="@string/person_intro" />
 
-        </android.support.v7.widget.CardView>
-    </android.support.v4.widget.NestedScrollView>
+        </androidx.cardview.widget.CardView>
+    </androidx.core.widget.NestedScrollView>
     <!--app:behavior_overlapTop="30dp", The amount that the scrolling view
     should overlap the bottom of any AppBarLayout.
      使ScrollView压在AppBarLayout上面一段长度.-->
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/main_tb_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
@@ -120,7 +120,7 @@
 
         </LinearLayout>
 
-    </android.support.v7.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar>
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="@dimen/image_width"
@@ -132,7 +132,7 @@
     <!--app:border_width="2dp"-->
         <!--app:border_color="@android:color/white"-->
 
-    <android.support.design.widget.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -140,4 +140,4 @@
         android:layout_margin="@dimen/fab_margin"
         android:src="@android:drawable/ic_dialog_email" />
 
-</android.support.design.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

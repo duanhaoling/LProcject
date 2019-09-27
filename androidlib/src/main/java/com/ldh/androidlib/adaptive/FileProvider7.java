@@ -4,8 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
-import android.support.annotation.Keep;
-import android.support.v4.content.FileProvider;
+import androidx.annotation.Keep;
+import androidx.core.content.FileProvider;
 
 import java.io.File;
 

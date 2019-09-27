@@ -19,7 +19,7 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewTreeObserver;
 
-public class ClipImageView extends android.support.v7.widget.AppCompatImageView implements View.OnTouchListener, ViewTreeObserver.OnGlobalLayoutListener {
+public class ClipImageView extends androidx.appcompat.widget.AppCompatImageView implements View.OnTouchListener, ViewTreeObserver.OnGlobalLayoutListener {
 
     public static final float DEFAULT_MAX_SCALE = 4.0f;
     public static final float DEFAULT_MID_SCALE = 2.0f;
