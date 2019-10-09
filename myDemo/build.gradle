@@ -100,7 +100,9 @@ android {
     greendao {
         schemaVersion 1
         daoPackage 'com.example.mydemo.greendaotdemo'
-        targetGenDir 'src/main/java'
+//        targetGenDir 'src/main/java'  //注释掉可以屏蔽以下编译过时警告
+        //INFO: API 'variant.getJavaCompiler()' is obsolete and has been replaced with 'variant.getJavaCompileProvider()'.
+        //It will be removed at the end of 2019.
     }
 
     //使用DataBinding
@@ -180,8 +182,6 @@ dependencies {
     implementation('com.crashlytics.sdk.android:crashlytics:2.9.4@aar') {
         transitive = true;
     }
-
-    def lifecycle_version = "1.1.1"
 
     // ViewModel and LiveData
     implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
